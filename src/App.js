@@ -9,7 +9,7 @@ function App() {
 
   return (
    <>
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           {routes.map((route, index) => (
             <Route
@@ -22,7 +22,7 @@ function App() {
           ))}
            <Route path="*" element={<NotFound />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
       </>
   );
 }
