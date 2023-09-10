@@ -3,7 +3,7 @@ import { Element } from 'react-scroll';
 // utils
 import { Controls, PlayState, Timeline, Tween } from 'react-gsap';
 //components
-
+import { Link } from 'react-router-dom';
 // imgs
 import Email from '../../../assets/png/email.png'
 import Phone from '../../../assets/png/phone-call.png'
@@ -65,10 +65,10 @@ const Section4 = () => {
       <h1 className='section-title white'>Contacts</h1>
         <ul onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
             {/* <li id="list-1" className={hoverItem==="list-1"?"contact-hover":""} ><a href={process.env.REACT_APP_BLOG_URL} target="_blank"><img id="list-1" src={Phone} alt='contact-phone'/></a></li> */}
-            <li id="list-2" className={hoverItem==="list-2"?"contact-hover":""} ><a href="mailto:m__ma@naver.com" target="_blank"><img id="list-2" src={Email} alt='contact-email'/></a></li>
+            <li id="list-2" className={hoverItem==="list-2"?"contact-hover":""} ><Link to="mailto:m__ma@naver.com" target="_blank"><img id="list-2" src={Email} alt='contact-email'/></Link></li>
             {/* <li id="list-3" className={hoverItem==="list-3"?"contact-hover":""} ><a href={process.env.REACT_APP_BLOG_URL} target="_blank"><img id="list-3" src={Instagram} alt='contact-instagram'/></a></li> */}
-            <li id="list-4" className={hoverItem==="list-4"?"contact-hover":""} ><a href={process.env.REACT_APP_GIT_URL} target="_blank"><img id="list-4" src={Git} alt='contact-git'/></a></li>
-            <li id="list-5" className={hoverItem==="list-5"?"contact-hover":""} ><a href={process.env.REACT_APP_BLOG_URL} target="_blank"><img id="list-5" src={Blog} alt='contact-blog'/></a></li>
+            <li id="list-4" className={hoverItem==="list-4"?"contact-hover":""} ><Link to={process.env.REACT_APP_GIT_URL} target="_blank"><img id="list-4" src={Git} alt='contact-git'/></Link></li>
+            <li id="list-5" className={hoverItem==="list-5"?"contact-hover":""} ><Link to={process.env.REACT_APP_BLOG_URL} target="_blank"><img id="list-5" src={Blog} alt='contact-blog'/></Link></li>
         </ul>
       </div>
       </Tween>
