@@ -10,6 +10,6 @@ const Main = React.lazy(() => import('./views/Home/Main'))
  * 작성일 : 2023.07.15
  */
 const routes = [
-    { path:'/react_portfolio', exact: true, name:'Main', element: Main}, 
+    { path:'/', exact: true, name:'Main', element: Main}, 
 ]
 export default routes
