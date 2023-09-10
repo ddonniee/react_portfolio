@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, HashRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 
 import routes from "./routes";
 import NotFound from "./views/Error/NotFound";
@@ -9,7 +9,8 @@ function App() {
 
   return (
    <>
-    <HashRouter>
+    <BrowserRouter>
+   
         <Routes>
           {routes.map((route, index) => (
             <Route
@@ -22,7 +23,7 @@ function App() {
           ))}
            <Route path="*" element={<NotFound />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
       </>
   );
 }
