@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Mono Bold';
+    src: url('../../assets/fonts/SpaceMono-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mono Bold Italic';
+    src: url('../../assets/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mono Italic';
+    src: url('../../assets/fonts/SpaceMono-Italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mono Regular';
+    src: url('../../assets/fonts/SpaceMono-Regular.ttf') format('truetype');
+}
+@import '../variables.scss';
+* {
+    font-family: 'Mono Regular', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    box-sizing: border-box;
+    margin: 0;
+}
+html {
+    font-size: 16px; min-width: 582px; overflow: auto;
+}
+ul,li {
+    list-style: none; padding: 0; margin: 0;
+}
+.header-wrapper {
+    display: flex; justify-content: space-between;
+    position: fixed; width: 100vw;    padding: 20px;
+    nav {
+        align-self: center; font-size: 1rem;
+    }
+    & > div:first-child {
+        padding: 0 20px; align-self: center; font-size: 1.5rem;
+    }
+    .section-list {
+        display: flex; padding-right: 20px;
+        li {
+            padding: 0 5px; cursor: pointer;
+        }
+    }
+    .contents {
+        position: relative;
+        top: 51px;
+        img {
+            cursor: pointer;
+        }
+    }
+ }
+
+ .footer-wrapper{
+    background-color: $skill-background-color;
+    &  > div:first-child {
+        text-align: center; padding: 30px;
+        color: white;
+}
+}
+.cursor-btn {
+    cursor: pointer;
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+    
+} 
+    
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (max-width:767px) {
+    .header-wrapper {
+       
+        nav {
+            font-size: 0.7rem;
+        }
+        & > div:first-child {
+            font-size: 1rem;
+        }
+        
+     }
+}
