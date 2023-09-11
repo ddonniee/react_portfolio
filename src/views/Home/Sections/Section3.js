@@ -142,7 +142,7 @@ const Section3 = () => {
       {/* 나머지 요소들도 같은 방식으로 생성 */}
       <Tween 
           from={{
-            y: "-150px",
+            y: "-0",
             opacity:0,
           }} 
           to={{
