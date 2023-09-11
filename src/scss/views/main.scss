@@ -76,9 +76,18 @@
 .hoverd-txt {
     color: red; font-weight: 700;
 }
+.icon-wrapper {
+    background-color: $skill-background-color;
+    width: 32px;
+    height: 32px; 
+    border-radius: 50%; margin-right: 5px;
+    img {
+        width: 21px !important;
+        margin: 4px !important;
+    }
+}
 .project-wrapper {
-    position: relative; height: 600px; white-space: pre-line;
-
+    position: relative; height: 800px; white-space: pre-line;
     .slick-slide{
         height: calc(100% - 111px);
         & > div {
@@ -126,11 +135,12 @@
                 height: 100%;
                 align-items: center;
                 display: flex; padding: 0 10px;
-                li {
+                li:not(.icon-wrapper) {
                     width: 25px;
                     height: 25px; 
                     border-radius: 50%; margin-right: 5px;
                 }
+               
                 li:first-child {
                     background-color: $border-grey-color;
                 }
@@ -142,6 +152,8 @@
                 }
             }
             .top-input {
+                text-overflow: ellipsis;
+                overflow: hidden;  white-space: nowrap;
                 width: 200px; border-radius: 5px; border: 1px solid; margin: 5px 0; padding: 5px;
             }
             }
@@ -155,7 +167,7 @@
                     position: absolute;
                     padding: 20px;
                     margin: auto;
-                    top: 100px;
+                    top: 200px;
                     right: 40px;
                 cursor: pointer;
                     transition: width 0.3s ease
@@ -166,6 +178,19 @@
                     padding: 100px;
                 }
             }
+        }
+    }
+    .project-list {
+        height: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        li {
+            cursor: pointer;
+            width: 15px; border-radius: 3px; border: 2px solid; margin-right: 5px; 
+        }
+        .selected-list {
+            background-color: black;
         }
     }
 }

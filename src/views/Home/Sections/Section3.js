@@ -30,13 +30,25 @@ const Section3 = () => {
    * 2. 콜백 프로젝트 캡쳐화면
    */
  
-  const boxRef3 = useRef(null);
+  const titleRef = useRef(null);
 
   const [box3VisibleHeight, setbox3VisibleHeight] = useState(0);
+
   const textRef = useRef(null);
+  const leftBoxRef = useRef(null);
+  const rightBoxRef = useRef(null);
+  const cursorRef = useRef(null)
+
   const textToType = `KPI-performance`;
   
   const [hover, setHover] = useState(false)
+
+  const handleClickIcon = (e,skill,index) => {
+    let url = (skill.imgSrc === Git && index==1) ? process.env.REACT_APP_CALLBACK_GIT_URL : (skill.imgSrc === Git && index === 0) ? process.env.REACT_APP_INTRANET_GIT_URL :'';
+    if(url!=='') {
+      window.location.assign(url);
+    }
+  }
 
   const projectList = [
     {
@@ -50,7 +62,7 @@ const Section3 = () => {
         { imgSrc: JS },
       ],
       elem : (
-        <div className='detail'>
+        <div className='detail' ref={rightBoxRef}>
         <div className='portal-img'>
           <div className='top'>
             <ul className='top-btn'>
@@ -59,31 +71,15 @@ const Section3 = () => {
               <li></li>
             </ul>
             <div className='top-input'>
-              <Timeline target={<div ref={textRef} style={{ display: 'inline-block' }} />}>
-                <Tween 
-                from={{ opacity: 0 }} 
-                to={{ 
-                  opacity:1,
-                  scrollTrigger: {
-                  trigger: '.detail',
-                  start: `700px`, // 요소의 상단이 화면 상단에 도달하면 시작
-                  scrub: 2,
-                },}}
-                stagger={0.1} 
-                duration={1} 
-                delay={6}
-                >
                   {textToType.split('').map((char, index) => (
-                    <span key={index} style={{ display: 'inline-block' }}>
+                    <span ref={textRef} key={index} style={{ display: 'inline-block' }}>
                       {char}
                     </span>
                   ))}
-                </Tween>
-              </Timeline>
             </div>
           </div>
           <div className='bottom' onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
-            <img src={Cursor} />
+            <img src={Cursor} ref={cursorRef}/>
             <Link to={process.env.REACT_APP_INTRANER_URL} target="_blank" className={`${hover?'hoverd-txt':''}`} >Click to portal site</Link>
           </div>
         </div>
@@ -100,7 +96,7 @@ const Section3 = () => {
         { imgSrc: JS },
       ],
       elem : (
-        <div className='detail'>
+        <div className='detail' ref={rightBoxRef}>
         <div className='callback-img'><img className='callback-sample' src={Two} alt="ppt-img"/></div>
         </div>
       )
@@ -109,53 +105,19 @@ const Section3 = () => {
   
   const generatedElements = projectList.map((item, index) => (
     <div className='project-slide' key={index}>
-      <Tween 
-        from={{ y: "-1000", opacity: 0 }} 
-        to={{
-          y: "0px",
-          opacity: 1,
-          scrollTrigger: {
-            trigger: '.detail',
-            start: `700px`, // 요소의 상단이 화면 상단에 도달하면 시작
-            scrub: 2,
-          },
-        }} 
-        duration={1} 
-        delay={1} // 인덱스를 기반으로 딜레이 조정
-      >
-        <div className='detail'>
+        <div className='detail' ref={leftBoxRef}>
           <h2>{item.title}</h2>
           <span>{item.description}</span>
           <div className='skill-list'>
             <span>Tools and languages</span>
             <ul>
               {item.skills.map((skill, skillIndex) => (
-                <li key={skillIndex} className={`${skill.imgSrc == Git ? 'cursor-btn':''}`}><img src={skill.imgSrc}/></li>
+                <li key={skillIndex} onClick={(e)=>handleClickIcon(e,skill,skillIndex)} className={`${skill.imgSrc == Git ? 'cursor-btn': skill.imgSrc=== VScode ?'icon-wrapper' : ''}`}><img src={skill.imgSrc} /></li>
               ))}
             </ul>
           </div>
         </div>
-      </Tween>
-      {/* 나머지 요소들도 같은 방식으로 생성 */}
-      <Tween 
-          from={{
-            y: "1500px",
-            opacity:0,
-          }} 
-          to={{
-            y: "0px",
-            opacity:1,
-            scrollTrigger: {
-              trigger: '.detail',
-              start: '700px', // 요소의 상단이 화면 상단에 도달하면 시작
-              scrub: 2,
-             
-            },}} 
-          duration={1} 
-          delay={1}
-          >
             {item.elem}
-          </Tween>
     </div>
   ));
 
@@ -170,65 +132,99 @@ const [selectedProject, setSelectedProject] = useState(0)
     slidesToScroll: 1,
     // autoplay: true,
 };  
-const [ref, setRef] = useState();
-const [isPlay, setIsPlay] = useState(true);
-const [currentSlide, setCurrentSlide] = useState(1);
-const prev = () => {
-    ref.slickPrev();
-}
-const next = () => {
-    ref.slickNext();
+
+const handleProject = e => {
+  const id = e.target.id;
+  const lastIndex = id.length - 1;
+  const lastCharacter = id[lastIndex]*1;
+  if(lastCharacter===1 || lastCharacter===2) {
+    setSelectedProject(lastCharacter-1)
+  }
 }
 
   const imgRef = useRef(null);
     
     useEffect(() => {
-      const el = imgRef.current;
-      gsap.fromTo(
-        el,
-        { rotation: 0 },
-        {
-          rotation: 180,
-          duration: 3,
-          scrollTrigger: {
-            trigger: el,
-          },
-        }
-      );
+
+      // text
+
+      let tl = gsap.timeline(); //순서대로 gsap 사용하기
+      tl.from(titleRef.current, {
+        duration: 0.5, //애니메이션 적용시간
+        opacity:0,
+      });
+      tl.to(titleRef.current, {
+        y: 0,
+        duration:  0.5,
+        opacity:1,
+      });
+      tl.to(titleRef.current, {
+        opacity:1,
+      });
+    
     }, []);
 
-    useEffect(()=>{
-      console.log(hover)
-    },[hover])
+    useEffect(() => {
+      let tl = gsap.timeline();
+      const el = cursorRef.current;
+      gsap.to(el,{
+        duration: 1.3,
+        scale: 1.5, //1.5배 커짐
+        ease: "bounce",
+        repeat:-1,
+        yoyo:true
+      });
+      // left box
+      tl.from(leftBoxRef.current, {
+        duration: 0.5, //애니메이션 적용시간
+        opacity:0,
+        x:-1500,
+      });
+      tl.to(leftBoxRef.current, {
+        // rotation: 360, // 360도 회전
+        duration: 0.5,
+        opacity:1,
+        x:0,
+      });
+      tl.to(leftBoxRef.current, {
+        opacity:1,
+        x:0
+      });
+
+      // right box
+
+      tl.from(rightBoxRef.current, {
+        // y: -220, //y -150인 곳에서부터 시작
+        duration: 0.5, //애니메이션 적용시간
+        opacity:0,
+        y:1500
+      });
+      tl.to(rightBoxRef.current, {
+        // rotation: 360, // 360도 회전
+        duration: 0.5,
+        opacity:1,
+      });
+      tl.to(rightBoxRef.current, {
+        opacity:1,
+        y:0
+      });
+    }, [selectedProject]);
+
+
+
   return (
     <Style hover={hover}>
-      <Element name="section3" className="section" ref={boxRef3} id="section3">
+      <Element name="section3" className="section" id="section3">
           <div className="project-wrapper">
-          <Tween
-            from={{
-            opacity:0
-            }}
-            to={{
-            opacity:1,
-            scrollTrigger: {
-                trigger: '.section-title',
-                start: '500px', // 요소의 상단이 화면 상단에 도달하면 시작
-                scrub: 0.5,
-            },
-            }}
-        ><h1 className="section-title">Projects</h1>
-        </Tween>
-          {/* <Carousel pages={generatedElements} setting={bannerSettings} setRef={setRef} setIdx={setCurrentSlide}/> */}
+        <h1 className="section-title" ref={titleRef} >Projects</h1>
           {
             generatedElements[selectedProject]
           }
-          <button onClick={()=>setSelectedProject(selectedProject===1?0:1)}>코딱지</button>
-          {/* <div className='banner-btn'>
-              <img src={Prev} alt="prev-btn" onClick={prev}/> 
-              <img src={Next} alt="next-btn" onClick={next}/> 
-          </div> */}
+          <ul className="project-list" onClick={(e)=>handleProject(e)}>
+            <li id="project-1" className={`${selectedProject===0?'selected-list':''}`}></li>
+            <li id="project-2" className={`${selectedProject===1?'selected-list':''}`}></li>
+          </ul>
           </div>
-        {/* </Tween> */}
     </Element>
     </Style>
   );
@@ -240,7 +236,7 @@ const Style = styled.div`
   .portal-img {
     .bottom {
       img {
-        width: ${props => (props.hover ? '110px' : '100px')};
+        width: 100px;
       }
     }
   }
