@@ -61,12 +61,12 @@ const Section3 = () => {
             <div className='top-input'>
               <Timeline target={<div ref={textRef} style={{ display: 'inline-block' }} />}>
                 <Tween 
-                from={{ opacity: 0 }} 
+                from={{ opacity : 1 }} 
                 to={{ 
                   opacity:1,
                   scrollTrigger: {
                   trigger: '.detail',
-                  start: `800px`, // 요소의 상단이 화면 상단에 도달하면 시작
+                  start: `720px`, // 요소의 상단이 화면 상단에 도달하면 시작
                   scrub: 2,
                 },}}
                 stagger={0.1} 
@@ -111,27 +111,16 @@ const Section3 = () => {
     <div className='project-slide' key={index}>
       <Tween 
         from={{ 
-          // x:"-500px",
-          // opacity: 0 
+          x:"-500px",
+          opacity: 0 
         }} 
         to={{
-          // x: "t0",
-          // opacity: 1,
+          x: "0",
+          opacity: 1,
           scrollTrigger: {
             trigger: '.detail',
-            start: `800px`, // 요소의 상단이 화면 상단에 도달하면 시작
+            start: `720px`, // 요소의 상단이 화면 상단에 도달하면 시작
             scrub: 2,
-            onEnter: () => {
-              // ScrollTrigger가 요소에 진입할 때 opacity를 1로 설정합니다.
-              gsap.to('.detail', { opacity: 1,});
-            },
-            onLeaveBack: () => {
-              // ScrollTrigger가 요소에서 나갈 때 opacity를 0으로 설정합니다.
-              gsap.to('.detail', {    
-                // x:"-500px",
-                opacity: 0 
-            });
-            },
           },
         }} 
         duration={1} 
@@ -153,26 +142,17 @@ const Section3 = () => {
       {/* 나머지 요소들도 같은 방식으로 생성 */}
       <Tween 
           from={{
-            // y: "-150px",
-            // opacity:0,
+            y: "-150px",
+            opacity:0,
           }} 
           to={{
-            // y: "0px",
-            // opacity:1,
+            y: "0px",
+            opacity:1,
             scrollTrigger: {
               trigger: '.detail',
-              start: '800px', // 요소의 상단이 화면 상단에 도달하면 시작
+              start: '720px', // 요소의 상단이 화면 상단에 도달하면 시작
               scrub: 2,
-              onEnter: () => {
-                // ScrollTrigger가 요소에 진입할 때 opacity를 1로 설정합니다.
-                gsap.to('.detail', { opacity: 1, y: "0px",});
-              },
-              onLeaveBack: () => {
-                // ScrollTrigger가 요소에서 나갈 때 opacity를 0으로 설정합니다.
-                gsap.to('.detail', {    
-                y: "-150px",
-                opacity:0,});
-              },
+             
             },}} 
           duration={1} 
           delay={3}
@@ -201,46 +181,55 @@ const [selectedProject, setSelectedProject] = useState(0)
         }
       );
     }, []);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth); // 브라우저 너비 상태
-      // 리사이징 이벤트 핸들러
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-    // ScrollTrigger 위치를 업데이트합니다.
-    ScrollTrigger.refresh();
-  };
 
-  useEffect(() => {
-    // 리사이징 이벤트 리스너를 추가합니다.
-    window.addEventListener('resize', handleResize);
-    return () => {
-      // 컴포넌트가 언마운트 될 때 리사이징 이벤트 리스너를 제거합니다.
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    gsap.registerPlugin(ScrollTrigger);
 
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function() {
+  
+        gsap.to(".detail", {
+          opacity: 1,
+          x: 0,
+          scrollTrigger: {
+            trigger: ".my-element",
+            start: "top center",
+            end: "bottom center",
+            scrub: true
+          }
+        });
+      },
+      "(max-width: 767px)": function() {
+  
+        gsap.to(".detail", {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: ".my-element",
+            start: "top center",
+            end: "bottom center",
+            scrub: true
+          }
+        });
+      }
+    });
+  
+  
+    window.addEventListener("resize", ScrollTrigger.update);
   return (
     <Style hover={hover}>
       <Element name="section3" className="section" ref={boxRef3} id="section3">
           <div className="project-wrapper">
           <Tween
             from={{
-            // opacity:0
+            opacity:0
             }}
             to={{
-            // opacity:1,
+            opacity:1,
             scrollTrigger: {
                 trigger: '.section-title',
                 start: '700px', // 요소의 상단이 화면 상단에 도달하면 시작
                 end: 'bottom top',   // 요소의 하단이 화면 상단에 도달하면 종료
                 scrub: 0.5,
-                onEnter: () => {
-                  // ScrollTrigger가 요소에 진입할 때 opacity를 1로 설정합니다.
-                  gsap.to('.detail', { opacity: 1 });
-                },
-                onLeaveBack: () => {
-                  // ScrollTrigger가 요소에서 나갈 때 opacity를 0으로 설정합니다.
-                  gsap.to('.detail', { opacity: 0 });
-                },
             },
             }}
         ><h1 className="section-title">Projects</h1>
