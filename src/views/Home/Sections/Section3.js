@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Element } from 'react-scroll';
+import { Link } from 'react-router-dom';
 // utils
 import { Controls, PlayState, Timeline, Tween } from 'react-gsap';
 import {gsap} from 'gsap';
