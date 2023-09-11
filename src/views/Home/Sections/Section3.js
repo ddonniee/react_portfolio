@@ -190,6 +190,7 @@ const [selectedProject, setSelectedProject] = useState(0)
         gsap.to(".detail", {
           opacity: 1,
           x: 0,
+          Y:0,
           scrollTrigger: {
             trigger: ".my-element",
             start: "top center",
@@ -203,6 +204,7 @@ const [selectedProject, setSelectedProject] = useState(0)
         gsap.to(".detail", {
           opacity: 1,
           y: 0,
+          X:0,
           scrollTrigger: {
             trigger: ".my-element",
             start: "top center",
