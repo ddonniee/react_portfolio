@@ -12,7 +12,6 @@ import Section3 from './Sections/Section3';
 import Section4 from './Sections/Section4';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import Test from './Sections/Test';
 
 const Main = () => {
 
@@ -24,7 +23,6 @@ const Main = () => {
             <Section2 />
             <Section3 />
             <Section4 />
-            {/* <Test /> */}
             </div>
           <Footer />
     </div>

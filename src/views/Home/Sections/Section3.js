@@ -83,7 +83,7 @@ const Section3 = () => {
           </div>
           <div className='bottom' onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
             <img src={Cursor} />
-            <div className={`${hover?'hoverd-txt':''}`}>Click to portal site</div>
+            <Link to={process.env.REACT_APP_INTRANER_URL} target="_blank" className={`${hover?'hoverd-txt':''}`} >Click to portal site</Link>
           </div>
         </div>
         </div>
