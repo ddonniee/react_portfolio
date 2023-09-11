@@ -1,6 +1,6 @@
 @import '../variables.scss';
 // About
-.profile-container {
+.profile-wrapper {
     position: relative; background-color: #ADAAA6;
     img {
         width: 100%;
@@ -21,13 +21,13 @@
     }
 }
 // Skill
-.skill-container {
+.skill-wrapper {
     background-color: $skill-background-color;
     & > div {
-        padding: 10rem 2rem 2rem 2rem; color: white;
+        padding: 20rem 2rem 2rem 2rem; color: white;
     }
     ul {
-        display: flex; flex-wrap: wrap; padding: 0 2rem 3rem 2rem;
+        display: flex; flex-wrap: wrap; padding: 0 2rem 20rem 2rem;
         li {
             width: 28%; margin-top: 3rem; margin-right: 2rem;
             height: 200px;
@@ -111,7 +111,6 @@
             text-align: -webkit-center;
             img {
                 width: 100%;
-                height: 450px;
             }
         }
         .detail {
@@ -215,10 +214,15 @@
     }
 }
 /* 노트북 & PC (해상도 1024px)*/ 
+@media all and (min-width:1024px) {
+    .callback-sample {
+        height: 600px;
+    }
+}
+/** TABLET */
 @media all and (min-width:768px) and (max-width:1023px) {
 // About
-.profile-container {
-    b
+.profile-wrapper {
     img + div {
         span {
              font-size: 2rem;  
@@ -226,7 +230,7 @@
     }
 }
 // Skill
-.skill-container {
+.skill-wrapper {
     ul {
         li {
             width: 41%;
@@ -236,12 +240,16 @@
         }
     }
 }
+
+.callback-sample {
+    height: 500px;
+}
 } 
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
 @media all and (max-width:767px) {
 // About
-.profile-container {
+.profile-wrapper {
 
 img + div {
     span {
@@ -250,7 +258,7 @@ img + div {
 }
 }
 // Skill
-.skill-container {
+.skill-wrapper {
     ul {
         li {
             width: 90%;
@@ -260,4 +268,7 @@ img + div {
         }
     }
 } 
+.callback-sample {
+    height: 400px;
+}
 }

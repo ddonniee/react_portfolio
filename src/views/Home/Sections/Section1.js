@@ -14,7 +14,7 @@ const Section1 = () => {
   return (
     <Element name="section1" className="section" id="section1">
     <Tween from={{ opacity: 0 }} to={{ opacity: 0.7 }} duration={2}>
-      <div className='profile-container' ref={boxRef1}>
+      <div className='profile-wrapper' ref={boxRef1}>
         <img src={Profile} alt="profile-img"/>
         <div>
           <Tween from={{ opacity: 0 }} to={{ opacity:1 }} duration={1} delay={1}>

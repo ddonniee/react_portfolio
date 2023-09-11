@@ -15,8 +15,6 @@ import Android from '../../../assets/png/social.png';
 import Figma from '../../../assets/png/figma.png';
 import Git from '../../../assets/png/git.png'
 import JS from '../../../assets/png/java-script.png'
-import Prev from '../../../assets/png/icon_prev.svg';
-import Next from '../../../assets/png/icon_next.svg';
 import Cursor from '../../../assets/png/pointer.png';
 import VScode from '../../../assets/png/vscode.png';
 import SCSS from '../../../assets/png/sass.png';
@@ -152,6 +150,7 @@ const handleProject = e => {
       tl.from(titleRef.current, {
         duration: 0.5, //애니메이션 적용시간
         opacity:0,
+        delay:3
       });
       tl.to(titleRef.current, {
         y: 0,
@@ -165,50 +164,91 @@ const handleProject = e => {
     }, []);
 
     useEffect(() => {
-      let tl = gsap.timeline();
-      const el = cursorRef.current;
-      gsap.to(el,{
+      const cursorAnimation = gsap.to(cursorRef.current, {
         duration: 1.3,
-        scale: 1.5, //1.5배 커짐
+        scale: 1.5,
         ease: "bounce",
-        repeat:-1,
-        yoyo:true
+        repeat: -1,
+        yoyo: true
       });
-      // left box
-      tl.from(leftBoxRef.current, {
-        duration: 0.5, //애니메이션 적용시간
-        opacity:0,
-        x:-1500,
-      });
-      tl.to(leftBoxRef.current, {
-        // rotation: 360, // 360도 회전
-        duration: 0.5,
-        opacity:1,
-        x:0,
-      });
-      tl.to(leftBoxRef.current, {
-        opacity:1,
-        x:0
-      });
+    
+      // leftBoxRef.current 애니메이션
+      const leftBoxAnimation = gsap.timeline()
+        .from(leftBoxRef.current, {
+          duration: 0.5,
+          opacity: 0,
+          x: -200,
+         
+        })
+        .to(leftBoxRef.current, {
+          duration: 0.5,
+          opacity: 1,
+          x: 0,
+        });
+    
+      // rightBoxRef.current 애니메이션
+      const rightBoxAnimation = gsap.timeline()
+        .from(rightBoxRef.current, {
+          duration: 0.5,
+          opacity: 0,
+          delay:1,
+          y: 50,
+        })
+        .to(rightBoxRef.current, {
+          duration: 0.5,
+          opacity: 1,
+          y: 0,
+        });
+      // console.log('cursorRef.current',leftBoxRef.current)
+      // const el = cursorRef.current;
+      // gsap.to(el,{
+      //   duration: 1.3,
+      //   scale: 1.5, //1.5배 커짐
+      //   ease: "bounce",
+      //   repeat:-1,
+      //   yoyo:true
+      // });
+      // // left box
+      // tl.from(leftBoxRef.current, {
+      //   duration: 0.5, //애니메이션 적용시간
+      //   opacity:0,
+      //   x:-200,
+      // });
+      // tl.to(leftBoxRef.current, {
+      //   // rotation: 360, // 360도 회전
+      //   duration: 0.5,
+      //   opacity:1,
+      //   x:0,
+      // });
+      // tl.to(leftBoxRef.current, {
+      //   opacity:1,
+      //   x:0
+      // });
 
-      // right box
+      // // right box
 
-      tl.from(rightBoxRef.current, {
-        // y: -220, //y -150인 곳에서부터 시작
-        duration: 0.5, //애니메이션 적용시간
-        opacity:0,
-        y:1500
-      });
-      tl.to(rightBoxRef.current, {
-        // rotation: 360, // 360도 회전
-        duration: 0.5,
-        opacity:1,
-      });
-      tl.to(rightBoxRef.current, {
-        opacity:1,
-        y:0
-      });
-    }, [selectedProject]);
+      // tl.from(rightBoxRef.current, {
+      //   // y: -220, //y -150인 곳에서부터 시작
+      //   duration: 0.5, //애니메이션 적용시간
+      //   opacity:0,
+      //   y:200
+      // });
+      // tl.to(rightBoxRef.current, {
+      //   // rotation: 360, // 360도 회전
+      //   duration: 0.5,
+      //   opacity:1,
+      // });
+      // tl.to(rightBoxRef.current, {
+      //   opacity:1,
+      //   y:0
+      // }); 
+      return () => {
+        // 컴포넌트가 unmount될 때 애니메이션을 제거
+        cursorAnimation.kill();
+        leftBoxAnimation.kill();
+        rightBoxAnimation.kill();
+      };
+    }, [cursorRef, leftBoxRef, rightBoxRef, selectedProject]);;
 
 
 

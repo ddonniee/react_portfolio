@@ -21,9 +21,9 @@ const Section2 = () => {
     const windowHeight = window.innerHeight;
     
     // 현재 스크롤 위치가 boxRef2에 도달하면 box2VisibleHeight을 업데이트
-    let containerHegiht = scrollY - box2Top + windowHeight;
+    let wrapperHegiht = scrollY - box2Top + windowHeight;
     if (scrollY >= box2Top - windowHeight && scrollY <= box2Top + box2Height) {
-      if(containerHegiht<500) {
+      if(wrapperHegiht<500) {
         setBox2VisibleHeight(scrollY - box2Top + windowHeight);
       }else {
         setBox2VisibleHeight(1000);
@@ -42,7 +42,7 @@ const Section2 = () => {
   return (
     <Element name="section2" className="section" id="section2">
     <Tween from={{ opacity: 0 }} to={{ opacity: box2VisibleHeight/1000}} duration={0.5}>
-    <div className='skill-container' ref={boxRef2}>
+    <div className='skill-wrapper' ref={boxRef2}>
       <div className='text-area'>
         <h1>My skills</h1>
         <span>As a front-end developer, I possess essential skills and additional ones to effectively collaborate with other developers and designers. I am also committed to continuous learning, with an open mind, to further enhance my proficiency in development.</span>
