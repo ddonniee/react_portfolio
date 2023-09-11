@@ -38,7 +38,7 @@ const Section3 = () => {
   
   const [hover, setHover] = useState(false)
 
-  const callbackList = [
+  const projectList = [
     {
       title: "01 사내 인트라넷",
       description: "사내 KPI 관리시스템으로, API에서 받아온 KPI수치를 그리고 관리자는 점수에 따라서 인센티브를 계산 가능\n 사용자 권한에 따라 게시판 접근 권한 및 글 작성 여부 확인",
@@ -66,7 +66,7 @@ const Section3 = () => {
                   opacity:1,
                   scrollTrigger: {
                   trigger: '.detail',
-                  start: `1600px`, // 요소의 상단이 화면 상단에 도달하면 시작
+                  start: `800px`, // 요소의 상단이 화면 상단에 도달하면 시작
                   scrub: 2,
                 },}}
                 stagger={0.1} 
@@ -84,7 +84,7 @@ const Section3 = () => {
           </div>
           <div className='bottom' onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
             <img src={Cursor} />
-            <Link to={process.env.REACT_APP_INTRANER_URL} target="_blank" className={`${hover?'hoverd-txt':''}`} >Click to portal site</Link>
+            <Link to={process.env.REACT_APP_GIT_URL} target="_blank" className={`${hover?'hoverd-txt':''}`} >Click to see more projects</Link>
           </div>
         </div>
         </div>
@@ -107,21 +107,24 @@ const Section3 = () => {
     },
   ];
   
-  const generatedElements = callbackList.map((item, index) => (
+  const generatedElements = projectList.map((item, index) => (
     <div className='project-slide' key={index}>
       <Tween 
-        from={{ y: "-1000", opacity: 0 }} 
+        from={{ 
+          x:"-500px",
+          opacity: 0 
+        }} 
         to={{
-          y: "0px",
+          x: "t0",
           opacity: 1,
           scrollTrigger: {
             trigger: '.detail',
-            start: `1600px`, // 요소의 상단이 화면 상단에 도달하면 시작
+            start: `800px`, // 요소의 상단이 화면 상단에 도달하면 시작
             scrub: 2,
           },
         }} 
         duration={1} 
-        delay={2 + index * 2} // 인덱스를 기반으로 딜레이 조정
+        delay={2} // 인덱스를 기반으로 딜레이 조정
       >
         <div className='detail'>
           <h2>{item.title}</h2>
@@ -139,7 +142,7 @@ const Section3 = () => {
       {/* 나머지 요소들도 같은 방식으로 생성 */}
       <Tween 
           from={{
-            y: "1500px",
+            y: "-150px",
             opacity:0,
           }} 
           to={{
@@ -147,7 +150,7 @@ const Section3 = () => {
             opacity:1,
             scrollTrigger: {
               trigger: '.detail',
-              start: '1700px', // 요소의 상단이 화면 상단에 도달하면 시작
+              start: '800px', // 요소의 상단이 화면 상단에 도달하면 시작
               scrub: 2,
              
             },}} 
@@ -160,7 +163,7 @@ const Section3 = () => {
   ));
 
   
-
+const [selectedProject, setSelectedProject] = useState(0)
   const bannerSettings = {
     dots: true,
     arrow: false,
@@ -212,18 +215,22 @@ const next = () => {
             opacity:1,
             scrollTrigger: {
                 trigger: '.section-title',
-                start: '800px', // 요소의 상단이 화면 상단에 도달하면 시작
+                start: '700px', // 요소의 상단이 화면 상단에 도달하면 시작
                 end: 'bottom top',   // 요소의 하단이 화면 상단에 도달하면 종료
                 scrub: 0.5,
             },
             }}
         ><h1 className="section-title">Projects</h1>
         </Tween>
-          <Carousel pages={generatedElements} setting={bannerSettings} setRef={setRef} setIdx={setCurrentSlide}/>
-          <div className='banner-btn'>
+          {/* <Carousel pages={generatedElements} setting={bannerSettings} setRef={setRef} setIdx={setCurrentSlide}/> */}
+          {
+            generatedElements[selectedProject]
+          }
+          {/* <button onClick={()=>setSelectedProject(selectedProject===1?0:1)}>코딱지</button> */}
+          {/* <div className='banner-btn'>
               <img src={Prev} alt="prev-btn" onClick={prev}/> 
               <img src={Next} alt="next-btn" onClick={next}/> 
-          </div>
+          </div> */}
           </div>
         {/* </Tween> */}
     </Element>

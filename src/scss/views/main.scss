@@ -49,7 +49,7 @@
 // projects 
 .skill-list {
     position: absolute;
-        bottom: -130px;
+        bottom: 0;
         padding: 30px 0;
     ul {
         display: flex;  padding: 10px 0;
@@ -78,46 +78,24 @@
 }
 .project-wrapper {
     position: relative; height: 600px; white-space: pre-line;
-  
-    .slick-slider {
-    height: 100%; position: relative; height: calc( 100% - 111px );
-    }
-    .slick-track {
-        .callback-sample {
-            width: 50%; /* 이미지의 가로 너비를 50%로 설정 */
-            height: auto; /* 높이를 자동으로 조정하여 비율 유지 */
-          }
-    }
-    .slick-dots {
-        position: absolute; bottom: 10px;
-    }
-    .banner-btn {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        & > * {
-            padding: 20px; cursor: pointer;
-        }
-    }
+
     .slick-slide{
         height: calc(100% - 111px);
         & > div {
             height: 100%;
         }
     }
-    .slick-list, .slick-track, .project-slide{
+    .slick-list, .slick-track{
         height: 100%; 
     }
     .project-slide {
-        padding: 0 30px; white-space: pre-line;
-        height: 100%; display: flex !important; justify-content: space-evenly;
-        & > *:not(:nth-child(2)) {
-            width: 40%; 
+        padding: 0 30px; white-space: pre-line;height: calc(100% - 111px);
+        display: flex !important; justify-content: space-evenly;
+        & > * {
+            width: 45%; 
         }
-        .division {
-            border: 1px solid $border-grey-color; margin: 20px 0;
+        & > div:first-child {
+            flex-direction: column;
         }
         .callback-img {
             align-self: center;
@@ -128,14 +106,17 @@
             }
         }
         .detail {
-            align-self: center;
+            align-self: center; height: 100%;     height: 100%;
+            display: flex;
+            justify-content: center;
             h2 {
                 font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;
             }
         }
        
         .portal-img {
-            background: white; border: 2px solid; height: 50%; align-self: center; border-radius: 15px;
+            background: white; border: 2px solid;     height: 63%;
+            width: 100%; align-self: center; border-radius: 15px;
             .top {
                 width: 100%;  height:50px;  border-bottom: 1px solid; display: flex; justify-content: space-between; padding: 0 10px;
             ul {
@@ -166,6 +147,10 @@
             }
             .bottom {
                 position: relative;
+                height: calc(100% - 50px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 img {
                     position: absolute;
                     padding: 20px;
