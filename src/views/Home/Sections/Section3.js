@@ -61,12 +61,12 @@ const Section3 = () => {
             <div className='top-input'>
               <Timeline target={<div ref={textRef} style={{ display: 'inline-block' }} />}>
                 <Tween 
-                from={{ opacity : 1 }} 
+                from={{ opacity: 0 }} 
                 to={{ 
                   opacity:1,
                   scrollTrigger: {
                   trigger: '.detail',
-                  start: `720px`, // 요소의 상단이 화면 상단에 도달하면 시작
+                  start: `700px`, // 요소의 상단이 화면 상단에 도달하면 시작
                   scrub: 2,
                 },}}
                 stagger={0.1} 
@@ -84,7 +84,7 @@ const Section3 = () => {
           </div>
           <div className='bottom' onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
             <img src={Cursor} />
-            <Link to={process.env.REACT_APP_GIT_URL} target="_blank" className={`${hover?'hoverd-txt':''}`} >Click to see more projects</Link>
+            <Link to={process.env.REACT_APP_INTRANER_URL} target="_blank" className={`${hover?'hoverd-txt':''}`} >Click to portal site</Link>
           </div>
         </div>
         </div>
@@ -110,21 +110,18 @@ const Section3 = () => {
   const generatedElements = projectList.map((item, index) => (
     <div className='project-slide' key={index}>
       <Tween 
-        from={{ 
-          x:"-500px",
-          opacity: 0 
-        }} 
+        from={{ y: "-1000", opacity: 0 }} 
         to={{
-          x: "0",
+          y: "0px",
           opacity: 1,
           scrollTrigger: {
             trigger: '.detail',
-            start: `720px`, // 요소의 상단이 화면 상단에 도달하면 시작
+            start: `700px`, // 요소의 상단이 화면 상단에 도달하면 시작
             scrub: 2,
           },
         }} 
         duration={1} 
-        delay={2} // 인덱스를 기반으로 딜레이 조정
+        delay={1} // 인덱스를 기반으로 딜레이 조정
       >
         <div className='detail'>
           <h2>{item.title}</h2>
@@ -142,7 +139,7 @@ const Section3 = () => {
       {/* 나머지 요소들도 같은 방식으로 생성 */}
       <Tween 
           from={{
-            y: "-0",
+            y: "1500px",
             opacity:0,
           }} 
           to={{
@@ -150,12 +147,12 @@ const Section3 = () => {
             opacity:1,
             scrollTrigger: {
               trigger: '.detail',
-              start: '720px', // 요소의 상단이 화면 상단에 도달하면 시작
+              start: '700px', // 요소의 상단이 화면 상단에 도달하면 시작
               scrub: 2,
              
             },}} 
           duration={1} 
-          delay={3}
+          delay={1}
           >
             {item.elem}
           </Tween>
@@ -164,6 +161,24 @@ const Section3 = () => {
 
   
 const [selectedProject, setSelectedProject] = useState(0)
+  const bannerSettings = {
+    dots: true,
+    arrow: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // autoplay: true,
+};  
+const [ref, setRef] = useState();
+const [isPlay, setIsPlay] = useState(true);
+const [currentSlide, setCurrentSlide] = useState(1);
+const prev = () => {
+    ref.slickPrev();
+}
+const next = () => {
+    ref.slickNext();
+}
 
   const imgRef = useRef(null);
     
@@ -182,41 +197,9 @@ const [selectedProject, setSelectedProject] = useState(0)
       );
     }, []);
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    ScrollTrigger.matchMedia({
-      "(min-width: 768px)": function() {
-  
-        gsap.to(".detail", {
-          opacity: 1,
-          x: 0,
-          Y:0,
-          scrollTrigger: {
-            trigger: ".my-element",
-            start: "top center",
-            end: "bottom center",
-            scrub: true
-          }
-        });
-      },
-      "(max-width: 767px)": function() {
-  
-        gsap.to(".detail", {
-          opacity: 1,
-          y: 0,
-          X:0,
-          scrollTrigger: {
-            trigger: ".my-element",
-            start: "top center",
-            end: "bottom center",
-            scrub: true
-          }
-        });
-      }
-    });
-  
-  
-    window.addEventListener("resize", ScrollTrigger.update);
+    useEffect(()=>{
+      console.log(hover)
+    },[hover])
   return (
     <Style hover={hover}>
       <Element name="section3" className="section" ref={boxRef3} id="section3">
@@ -229,8 +212,7 @@ const [selectedProject, setSelectedProject] = useState(0)
             opacity:1,
             scrollTrigger: {
                 trigger: '.section-title',
-                start: '700px', // 요소의 상단이 화면 상단에 도달하면 시작
-                end: 'bottom top',   // 요소의 하단이 화면 상단에 도달하면 종료
+                start: '500px', // 요소의 상단이 화면 상단에 도달하면 시작
                 scrub: 0.5,
             },
             }}
@@ -240,7 +222,7 @@ const [selectedProject, setSelectedProject] = useState(0)
           {
             generatedElements[selectedProject]
           }
-          {/* <button onClick={()=>setSelectedProject(selectedProject===1?0:1)}>코딱지</button> */}
+          <button onClick={()=>setSelectedProject(selectedProject===1?0:1)}>코딱지</button>
           {/* <div className='banner-btn'>
               <img src={Prev} alt="prev-btn" onClick={prev}/> 
               <img src={Next} alt="next-btn" onClick={next}/> 

@@ -16,8 +16,8 @@ function App() {
 }, []);
   return (
    <>
-    <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
-    {/* <BrowserRouter> */}
+    {/* <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}> */}
+    <BrowserRouter>
         <Routes>
           {routes.map((route, index) => (
             <Route
