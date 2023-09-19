@@ -43,7 +43,7 @@ function Header() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="section2" smooth={true} duration={1000} offset={-75}>
+                    <Link to="section2" smooth={true} duration={1000} offset={175}>
                     Skill
                     </Link>
                 </li>

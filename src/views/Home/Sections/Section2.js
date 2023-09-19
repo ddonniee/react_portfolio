@@ -47,7 +47,7 @@ useEffect(() => {
         stagger:1,
         scrollTrigger: {
           trigger: box,
-          start: 'bottom bottom',
+          start: 'top bottom',
           end: 'top 20%',
           scrub: true,
         },
