@@ -8,12 +8,12 @@ import NotFound from "./views/Error/NotFound";
 
 function App() {
 
-  useEffect(() => {
-    window.onbeforeunload = function pushRefresh() {
-      window.scrollTo(0, 0);
-    };
+//   useEffect(() => {
+//     window.onbeforeunload = function pushRefresh() {
+//       window.scrollTo(0, 0);
+//     };
 
-}, []);
+// }, []);
   return (
    <>
     {/* <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}> */}

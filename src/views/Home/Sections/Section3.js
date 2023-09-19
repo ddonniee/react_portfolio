@@ -10,6 +10,7 @@ import Carousel from '../../../components/Carousel';
 // imgs
 
 import Two from '../../../assets/imgs/2.jpg';
+import Test from '../../../assets/imgs/test-img.jpg'
 
 import Android from '../../../assets/png/social.png';
 import Figma from '../../../assets/png/figma.png';
@@ -50,7 +51,7 @@ const Section3 = () => {
 
   const projectList = [
     {
-      title: "01 사내 인트라넷",
+      title: "01 관리자페이지",
       description: "사내 KPI 관리시스템으로, API에서 받아온 KPI수치를 그리고 관리자는 점수에 따라서 인센티브를 계산 가능\n 사용자 권한에 따라 게시판 접근 권한 및 글 작성 여부 확인",
       skills: [
         { imgSrc: Git },
@@ -99,6 +100,21 @@ const Section3 = () => {
         </div>
       )
     },
+    {
+      title: "03 도파민 중독테스트",
+      description: "타입스크립트, 리덕스, gsap 라이브러리를 이용한 개인 토이프로젝트\n 카카오톡 공유하기(로컬환경)를 통해 지인들과 테스트 결과를 공유할 수 있다. ",
+      skills: [
+        { imgSrc: Git },
+        { imgSrc: Android },
+        { imgSrc: Figma },
+        { imgSrc: JS },
+      ],
+      elem : (
+        <div className='detail' ref={rightBoxRef}>
+        <Link to={process.env.REACT_APP_QUIZ_URL} target="_blank" className='callback-img'><img className='callback-sample' src={Test} alt="ppt-img"/></Link>
+        </div>
+      )
+    },
   ];
   
   const generatedElements = projectList.map((item, index) => (
@@ -131,13 +147,8 @@ const [selectedProject, setSelectedProject] = useState(0)
     // autoplay: true,
 };  
 
-const handleProject = e => {
-  const id = e.target.id;
-  const lastIndex = id.length - 1;
-  const lastCharacter = id[lastIndex]*1;
-  if(lastCharacter===1 || lastCharacter===2) {
-    setSelectedProject(lastCharacter-1)
-  }
+const handleProject = (e,idx) => {
+    setSelectedProject(idx)
 }
 
   const imgRef = useRef(null);
@@ -199,49 +210,6 @@ const handleProject = e => {
           opacity: 1,
           y: 0,
         });
-      // console.log('cursorRef.current',leftBoxRef.current)
-      // const el = cursorRef.current;
-      // gsap.to(el,{
-      //   duration: 1.3,
-      //   scale: 1.5, //1.5배 커짐
-      //   ease: "bounce",
-      //   repeat:-1,
-      //   yoyo:true
-      // });
-      // // left box
-      // tl.from(leftBoxRef.current, {
-      //   duration: 0.5, //애니메이션 적용시간
-      //   opacity:0,
-      //   x:-200,
-      // });
-      // tl.to(leftBoxRef.current, {
-      //   // rotation: 360, // 360도 회전
-      //   duration: 0.5,
-      //   opacity:1,
-      //   x:0,
-      // });
-      // tl.to(leftBoxRef.current, {
-      //   opacity:1,
-      //   x:0
-      // });
-
-      // // right box
-
-      // tl.from(rightBoxRef.current, {
-      //   // y: -220, //y -150인 곳에서부터 시작
-      //   duration: 0.5, //애니메이션 적용시간
-      //   opacity:0,
-      //   y:200
-      // });
-      // tl.to(rightBoxRef.current, {
-      //   // rotation: 360, // 360도 회전
-      //   duration: 0.5,
-      //   opacity:1,
-      // });
-      // tl.to(rightBoxRef.current, {
-      //   opacity:1,
-      //   y:0
-      // }); 
       return () => {
         // 컴포넌트가 unmount될 때 애니메이션을 제거
         cursorAnimation.kill();
@@ -260,9 +228,14 @@ const handleProject = e => {
           {
             generatedElements[selectedProject]
           }
-          <ul className="project-list" onClick={(e)=>handleProject(e)}>
-            <li id="project-1" className={`${selectedProject===0?'selected-list':''}`}></li>
-            <li id="project-2" className={`${selectedProject===1?'selected-list':''}`}></li>
+          <ul className="project-list">
+            {
+              projectList?.map((pro,proIdx)=>{
+                return(
+                  <li  onClick={(e)=>handleProject(e,proIdx)} id={`project-${proIdx+1}`} className={`${selectedProject===proIdx?'selected-list':''}`}></li>
+                )
+              })
+            }
           </ul>
           </div>
     </Element>

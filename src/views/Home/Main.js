@@ -20,9 +20,9 @@ const Main = () => {
          <Header />
             <div className='content'>
              <Section1 />
-            <Section2 />
-            <Section3 />
-            <Section4 />
+             <Section2 />
+             <Section3 />
+             <Section4 />
             </div>
           <Footer />
     </div>

@@ -78,8 +78,8 @@
 }
 .icon-wrapper {
     background-color: $skill-background-color;
-    width: 32px;
-    height: 32px; 
+    width: 2rem;
+    height: 2rem; 
     border-radius: 50%; margin-right: 5px;
     img {
         width: 21px !important;
@@ -100,9 +100,7 @@
     .project-slide {
         padding: 0 30px; white-space: pre-line;height: calc(100% - 111px);
         display: flex !important; justify-content: space-evenly;
-        & > * {
-            width: 45%; 
-        }
+       
         & > div:first-child {
             flex-direction: column;
         }
@@ -115,14 +113,15 @@
         }
         .detail {
             align-self: center; height: 100%;     height: 100%;
-            display: flex;
-            justify-content: center;
+            display: flex; justify-content: center;
             h2 {
                 font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;
             }
         }
        
-        .portal-img {
+        .portal-img {bottom: -2rem;
+            padding: 30px 0;
+            align-items: center;
             background: white; border: 2px solid;     height: 63%;
             width: 100%; align-self: center; border-radius: 15px;
             .top {
@@ -166,8 +165,6 @@
                     position: absolute;
                     padding: 20px;
                     margin: auto;
-                    top: 200px;
-                    right: 40px;
                 cursor: pointer;
                     transition: width 0.3s ease
                 }
@@ -218,6 +215,18 @@
     .callback-sample {
         height: 600px;
     }
+    .project-slide {
+        & > * {
+            width: 45%; 
+        }
+    }
+    .bottom {
+        img {
+            top: 200px;
+            right: 40px;
+        }
+    }
+   
 }
 /** TABLET */
 @media all and (min-width:768px) and (max-width:1023px) {
@@ -227,6 +236,17 @@
         span {
              font-size: 2rem;  
         }
+    }
+}
+.bottom {
+    img {
+        top: 200px;
+        right: 40px;
+    }
+}
+.project-slide {
+    & > * {
+        width: 45%; 
     }
 }
 // Skill
@@ -267,8 +287,26 @@ img + div {
             display: none;
         }
     }
+   
 } 
 .callback-sample {
     height: 400px;
+}
+.project-slide {
+    flex-direction: column;
+    & > * {
+        width: 100%;
+    }
+}
+.skill-list {
+    bottom: -2rem;
+    align-items: center; display: flex;
+}
+.bottom {
+    img {
+        top: 3rem;
+        right: 4rem;
+        width: 5rem;
+    }
 }
 }
