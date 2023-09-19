@@ -206,7 +206,7 @@
             }
         }
         .contact-hover {
-            background-color: $border-grey-color;
+            background-color: $border-grey-color; transition: ease 0.5s;
         }
     }
 }

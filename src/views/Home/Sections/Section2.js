@@ -74,8 +74,8 @@ useEffect(() => {
         <li className='empty-box'></li>
         <li className='skill-box'>
           <h3>01</h3>
-          <span>WEB STANDARD</span>
-          <span>일관성, 접근성, 검색엔진 최적화, 보안, 플랫폼의 다양성을 보증하기위해 HTML, SCSS를 이용하여 웹표준에 준수하는 웹페이지 개발을 지향합니다.</span>
+          <span>Publishing</span>
+          <span>일관성, 접근성, 검색엔진 최적화, 보안, 플랫폼의 다양성을 보증하기위해 웹 표준을 준수하여 화면을 구조화합니다.</span>
         </li>
         <li className='skill-box'>
           <h3>02</h3>
@@ -90,6 +90,18 @@ useEffect(() => {
           <h3>04</h3>
           <span>Git</span>
           <span>3인 이상의 개발자와 형상관리도구인 GIT을 이용하여 작업물을 공유하여 협업하여, 유지보수가 용이한 작업을 진행했습니다.</span>  
+        </li>
+        <li className='empty-box'></li>
+        <li className='empty-box'></li>
+        <li className='skill-box'>
+          <h3>05</h3>
+          <span>TypeScript</span>
+          <span>규모가 큰 프로젝트에 대비하여 개인 프로젝트는 타입스크립트로 진행하여, 오류 확인 및 검증이 사전에 이루어지도록 합니다.</span>  
+        </li>
+        <li className='skill-box'>
+          <h3>06</h3>
+          <span>Libraries</span>
+          <span>Redux, Lodash 등 다양한 라이브러리를 활용하여 효율적이고 안정성있는 페이지 개발을 진행하였습니다.</span>  
         </li>
       </ul>
     </div>
