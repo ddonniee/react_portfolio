@@ -19,6 +19,9 @@ import JS from '../../../assets/png/java-script.png'
 import Cursor from '../../../assets/png/pointer.png';
 import VScode from '../../../assets/png/vscode.png';
 import SCSS from '../../../assets/png/sass.png';
+import TS from '../../../assets/png/typescript.png';
+import Redux from '../../../assets/png/Redux.png';
+
 import styled from 'styled-components';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -105,9 +108,10 @@ const Section3 = () => {
       description: "타입스크립트, 리덕스, gsap 라이브러리를 이용한 개인 토이프로젝트\n 카카오톡 공유하기(로컬환경)를 통해 지인들과 테스트 결과를 공유할 수 있다. ",
       skills: [
         { imgSrc: Git },
-        { imgSrc: Android },
-        { imgSrc: Figma },
-        { imgSrc: JS },
+        { imgSrc: VScode },
+        { imgSrc: SCSS },
+        { imgSrc: Redux },
+        { imgSrc: TS },
       ],
       elem : (
         <div className='detail' ref={rightBoxRef}>

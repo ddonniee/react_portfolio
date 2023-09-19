@@ -54,7 +54,7 @@ useEffect(() => {
       });
       gsap.to(box, {
         x: 0,
-        opacity:1
+        opacity:0
       });
     })
     },boxRef2)
