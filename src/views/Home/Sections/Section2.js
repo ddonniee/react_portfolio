@@ -11,14 +11,13 @@ const Section2 = () => {
  
   const textRef = useRef(null);
   const boxRef2 = useRef(null);
+  
+  const sectionRef = useRef(null);
 
 useEffect(() => {
 
-
   const txtItem = gsap.context((self)=>{
-    console.log(self)
     const txt = document.querySelectorAll('.text-box');
-    console.log('txt--->',txt)
     txt.forEach((t)=>{
       gsap.from(t, {
         opacity:0,
@@ -60,12 +59,12 @@ useEffect(() => {
     },boxRef2)
     return () => {boxItems.revert(); txtItem.revert();}
     // return () => boxItems.revert();
-  }, []); // <- Scope!
+  }, [sectionRef]); // <- Scope!
 
   return (
     <Element name="section2" className="section" id="section2">
     {/* <Tween from={{ opacity: 0 }} to={{ opacity: box2VisibleHeight/1000}} duration={0.5}> */}
-    <div className='skill-wrapper' >
+    <div className='skill-wrapper' ref={sectionRef}>
       <div className='text-area' ref={textRef}>
         <h1 className='text-box'>My skills</h1>
         <span className='text-box'>As a front-end developer, I possess essential skills and additional ones to effectively collaborate with other developers and designers. I am also committed to continuous learning, with an open mind, to further enhance my proficiency in development.</span>
